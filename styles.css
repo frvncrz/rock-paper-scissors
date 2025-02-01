@@ -10,3 +10,8 @@ body{
 h1 {
     color: #eebebe;
 }
+
+#resetbutton {
+  background-color: #ea999c;
+  color: #626880;
+}
