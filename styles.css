@@ -1,5 +1,5 @@
-body{
-    background-color: #51576d;
+body {
+  background-color: #51576d;
 }
 
 .container1 {
@@ -8,10 +8,28 @@ body{
 }
 
 h1 {
-    color: #eebebe;
+  color: #eebebe;
 }
 
-#resetbutton {
-  background-color: #ea999c;
+#resetButton {
+  background-color: #c6d0f5;
   color: #626880;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#resetButton:hover {
+  background-color: #626880;
+  color: #c6d0f5;
+  border: #c6d0f5 solid 2px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #eebebe;
+  text-align: center;
 }
