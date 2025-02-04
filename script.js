@@ -17,32 +17,21 @@ const getComputerChoice = () => {
   }
 };
 
-// Player 1 choice
-// const getHumanChoice = () => {
-//   let choice = prompt("Choose rock, paper, or scissors:");
-//   choice = choice.toLowerCase();
-//   if (choice === "rock" || choice === "paper" || choice === "scissors") {
-//     return choice;
-//   } else {
-//     alert("Not a valid choice, Try Again!");
-//     return getHumanChoice();
-//   }
-// };
-
-// button eventListeners for rock, paper, scissors
+// Player 1 choice & button eventListeners for rock, paper, scissors
 let humanChoice = "";
+const resultDiv = document.getElementById("result");
 
 document.getElementById("rock").addEventListener("click", () => {
   humanChoice = "rock";
-  console.log(playRound(humanChoice, getComputerChoice()));
+  resultDiv.textContent = playRound(humanChoice, getComputerChoice());
 });
 document.getElementById("paper").addEventListener("click", () => {
   humanChoice = "paper";
-  console.log(playRound(humanChoice, getComputerChoice()));
+  resultDiv.textContent = playRound(humanChoice, getComputerChoice());
 });
 document.getElementById("scissors").addEventListener("click", () => {
   humanChoice = "scissors";
-  console.log(playRound(humanChoice, getComputerChoice()));
+  resultDiv.textConetnt = playRound(humanChoice, getComputerChoice());
 });
 
 // Players Score Tracking
@@ -83,12 +72,3 @@ const playRound = (humanChoice, computerChoice) => {
       return "Invalid choice, Try Again!";
   }
 };
-
-// logic to play 5 rounds
-// const playGame = () => {
-//   for (let i = 0; i < 5; i++) {
-//     const humanChoice = getHumanChoice();
-//     const computerChoice = getComputerChoice();
-//     console.log(playRound(humanChoice, computerChoice));
-//   }
-// };
