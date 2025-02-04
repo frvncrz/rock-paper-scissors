@@ -18,21 +18,38 @@ const getComputerChoice = () => {
 };
 
 // Player 1 choice
-const getHumanChoice = () => {
-  let choice = prompt("Choose rock, paper, or scissors:");
-  choice = choice.toLowerCase();
-  if (choice === "rock" || choice === "paper" || choice === "scissors") {
-    return choice;
-  } else {
-    alert("Not a valid choice, Try Again!");
-    return getHumanChoice();
-  }
-};
+// const getHumanChoice = () => {
+//   let choice = prompt("Choose rock, paper, or scissors:");
+//   choice = choice.toLowerCase();
+//   if (choice === "rock" || choice === "paper" || choice === "scissors") {
+//     return choice;
+//   } else {
+//     alert("Not a valid choice, Try Again!");
+//     return getHumanChoice();
+//   }
+// };
+
+// button eventListeners for rock, paper, scissors
+let humanChoice = "";
+
+document.getElementById("rock").addEventListener("click", () => {
+  humanChoice = "rock";
+  console.log(playRound(humanChoice, getComputerChoice()));
+});
+document.getElementById("paper").addEventListener("click", () => {
+  humanChoice = "paper";
+  console.log(playRound(humanChoice, getComputerChoice()));
+});
+document.getElementById("scissors").addEventListener("click", () => {
+  humanChoice = "scissors";
+  console.log(playRound(humanChoice, getComputerChoice()));
+});
 
 // Players Score Tracking
 const humanScore = 0;
 const computerScore = 0;
 
+// Game round logic
 const playRound = (humanChoice, computerChoice) => {
   switch (humanChoice) {
     case "rock":
@@ -67,17 +84,6 @@ const playRound = (humanChoice, computerChoice) => {
   }
 };
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-playRound(humanSelection, computerSelection);
-
-// button eventListeners for rock, paper, scissors
-document.getElementById("rock").addEventListener("click", () => {
-  playRound("rock", getHumanChoice());
-});
-
-onsole.log(playRound(getHumanChoice, getComputerChoice));
-
 // logic to play 5 rounds
 // const playGame = () => {
 //   for (let i = 0; i < 5; i++) {
@@ -86,4 +92,3 @@ onsole.log(playRound(getHumanChoice, getComputerChoice));
 //     console.log(playRound(humanChoice, computerChoice));
 //   }
 // };
-
