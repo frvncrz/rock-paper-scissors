@@ -4,22 +4,17 @@
 
 // bot player choice
 const getComputerChoice = () => {
-  const randomNumber = Math.floor(Math.random() * 3);
-  switch (randomNumber) {
-    case 0:
-      return "rock";
-    case 1:
-      return "paper";
-    case 2:
-      return "scissors";
-    default:
-      return "🛑error🛑";
-  }
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 };
 
 // Player 1 choice & button eventListeners for rock, paper, scissors
 let humanChoice = "";
 const resultDiv = document.getElementById("result");
+const humanScoreDiv = document.getElementById("humanScore");
+const computerScoreDiv = document.getElementById("computerScore");
+const winnerDiv = document.getElementById("winner");
 
 document.getElementById("rock").addEventListener("click", () => {
   humanChoice = "rock";
@@ -31,44 +26,49 @@ document.getElementById("paper").addEventListener("click", () => {
 });
 document.getElementById("scissors").addEventListener("click", () => {
   humanChoice = "scissors";
-  resultDiv.textConetnt = playRound(humanChoice, getComputerChoice());
+  resultDiv.textContent = playRound(humanChoice, getComputerChoice());
 });
 
 // Players Score Tracking
-const humanScore = 0;
-const computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
+let roundCount = 0;
+
+const updateScores = () => {
+  humanScoreDiv.textContent = `Player Score: ${humanScore}`;
+  computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
+};
+
+const checkWinner = () => {
+  if (roundCount >= 5) {
+    if (humanScore > computerScore) {
+      winnerDiv.textContent = "Player wins the game! 🏆";
+    } else if (humanScore < computerScore) {
+      winnerDiv.textContent = "Computer wins the game! 🏆";
+    } else {
+      winnerDiv.textContent = "It's a tie!";
+    }
+  }
+};
 
 // Game round logic
 const playRound = (humanChoice, computerChoice) => {
-  switch (humanChoice) {
-    case "rock":
-      switch (computerChoice) {
-        case "paper":
-          return "Computer wins! 🏆";
-        case "scissors":
-          return "You win! 🏆";
-        default:
-          return "It's a tie!";
-      }
-    case "paper":
-      switch (computerChoice) {
-        case "scissors":
-          return "Computer wins! 🏆";
-        case "rock":
-          return "You win! 🏆";
-        default:
-          return "It's a tie!";
-      }
-    case "scissors":
-      switch (computerChoice) {
-        case "rock":
-          return "Computer wins! 🏆";
-        case "paper":
-          return "You win! 🏆";
-        default:
-          return "It's a tie!";
-      }
-    default:
-      return "Invalid choice, Try Again!";
+  let result = "";
+  if (humanChoice === computerChoice) {
+    result = "It's a tie!";
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    result = "Player wins this round!";
+    humanScore++;
+  } else {
+    result = "Computer wins this round!";
+    computerScore++;
   }
+  roundCount++;
+  updateScores();
+  checkWinner();
+  return result;
 };
